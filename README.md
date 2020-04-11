@@ -10,8 +10,8 @@ RxTx
 count: 500 max: 112mS min: 68mS, average: 83.928ms
 
 Forthecoming:
-PureJavaComm Implementation without Netty
-RxTx Implementation without Netty
-JSerialComm Implementation without Netty
-JTermios Implementation with Netty Embedded Channel
-JTermios Implemenation with a custom Netty Transport ala PureJavaComm, RxTx, JSerialComm
+- PureJavaComm Implementation without Netty
+- RxTx Implementation without Netty
+- JSerialComm Implementation without Netty
+- JTermios Implementation with Netty Embedded Channel
+- JTermios Implemenation with a custom Netty Transport ala PureJavaComm, RxTx, JSerialComm
