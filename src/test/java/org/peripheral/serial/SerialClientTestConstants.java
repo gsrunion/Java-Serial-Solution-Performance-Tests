@@ -1,5 +1,13 @@
 package org.peripheral.serial;
 
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.oio.OioByteStreamChannel;
+import io.netty.handler.codec.FixedLengthFrameDecoder;
+import io.netty.handler.codec.bytes.ByteArrayDecoder;
+import io.netty.handler.codec.bytes.ByteArrayEncoder;
+import io.netty.handler.logging.LogLevel;
+import io.netty.handler.logging.LoggingHandler;
+import org.ietf.jgss.Oid;
 import org.runion.peripheral.api.serial.SerialDeviceConfiguration;
 import org.runion.peripheral.api.serial.SerialDeviceDataBits;
 import org.runion.peripheral.api.serial.SerialDeviceParity;
@@ -28,5 +36,28 @@ class SerialClientTestConstants {
 			.setDatabits(DATA_BITS)
 			.setStopbits(STOP_BITS)
 			.setParitybit(PARITY);
+
+	public static final ChannelInitializer<OioByteStreamChannel> SERVER_INITIALIZER = new ChannelInitializer<OioByteStreamChannel>() {
+		@Override
+		protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
+			oioByteStreamChannel.pipeline().addLast(new FixedLengthFrameDecoder(SerialClientTestConstants.BUFFER_SIZE));
+			oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
+			oioByteStreamChannel.pipeline().addLast(new ByteArrayDecoder());
+			oioByteStreamChannel.pipeline().addLast(new ByteArrayEncoder());
+			oioByteStreamChannel.pipeline().addLast(new EchoServerHandler());
+		}
+	};
+
+	public static final ChannelInitializer<OioByteStreamChannel> CLIENT_INITIALIZER = new ChannelInitializer<OioByteStreamChannel>() {
+		@Override
+		protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
+			oioByteStreamChannel.pipeline().addLast(new FixedLengthFrameDecoder(SerialClientTestConstants.BUFFER_SIZE));
+			oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
+			oioByteStreamChannel.pipeline().addLast(new ByteArrayDecoder());
+			oioByteStreamChannel.pipeline().addLast(new ByteArrayEncoder());
+			oioByteStreamChannel.pipeline().addLast(new EchoClientHandler());
+		}
+	};
+
 
 }

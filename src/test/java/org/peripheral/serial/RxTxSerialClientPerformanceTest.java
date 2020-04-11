@@ -1,10 +1,5 @@
 package org.peripheral.serial;
 
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.oio.OioByteStreamChannel;
-import io.netty.handler.codec.FixedLengthFrameDecoder;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,26 +18,10 @@ public class RxTxSerialClientPerformanceTest {
 	public void setup() {
 		server = new RxTxSerialClient();
 		client = new RxTxSerialClient();
-
 		server.setConfiguration(SerialClientTestConstants.SERVER_CONFIG);
 		client.setConfiguration(SerialClientTestConstants.CLIENT_CONFIG);
-
-		server.setChannelInitializer(new ChannelInitializer<OioByteStreamChannel>() {
-			@Override
-			protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
-				oioByteStreamChannel.pipeline().addLast(new EchoServerHandler());
-			}
-		});
-
-		client.setChannelInitializer(new ChannelInitializer<OioByteStreamChannel>() {
-			@Override
-			protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
-				oioByteStreamChannel.pipeline().addLast(new FixedLengthFrameDecoder(SerialClientTestConstants.BUFFER_SIZE));
-				oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
-				oioByteStreamChannel.pipeline().addLast(new EchoClientHandler());
-			}
-		});
-
+		server.setChannelInitializer(SerialClientTestConstants.SERVER_INITIALIZER);
+		client.setChannelInitializer(SerialClientTestConstants.CLIENT_INITIALIZER);
 		client.setConnectionLostHandler(nil -> finishedFuture.complete(nil));
 	}
 

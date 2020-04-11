@@ -15,8 +15,8 @@ public class PureJavaCommSerialClient extends AbstractSerialClientImpl {
 		bootstrap.option(PureJavaCommChannelOption.BAUD_RATE, configuration.getBaud());
 		bootstrap.option(PureJavaCommChannelOption.READ_TIMEOUT, 5000);
 		bootstrap.option(PureJavaCommChannelOption.WAIT_TIME, 0);
-		bootstrap.option(PureJavaCommChannelOption.DTR, false);
-		bootstrap.option(PureJavaCommChannelOption.RTS, false);
+		//bootstrap.option(PureJavaCommChannelOption.DTR, false);
+		//bootstrap.option(PureJavaCommChannelOption.RTS, false);
 
 		switch(configuration.getDatabits()) {
 			case DATABITS_5:

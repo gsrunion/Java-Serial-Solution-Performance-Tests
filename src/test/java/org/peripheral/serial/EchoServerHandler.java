@@ -1,20 +1,17 @@
 package org.peripheral.serial;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 
 @ChannelHandler.Sharable
-class EchoServerHandler extends ChannelInboundHandlerAdapter {
+class EchoServerHandler extends SimpleChannelInboundHandler<byte[]> {
 
 	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg) {
+	protected void channelRead0(ChannelHandlerContext ctx, byte[] msg) throws Exception {
 		ctx.writeAndFlush(msg);
-	}
-
-	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) {
-		ctx.flush();
 	}
 
 	@Override

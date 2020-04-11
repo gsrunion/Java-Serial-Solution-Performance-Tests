@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import static org.junit.Assert.assertEquals;
 
-class EchoClientHandler extends ChannelInboundHandlerAdapter {
+class EchoClientHandler extends SimpleChannelInboundHandler<byte[]> {
 	private final ByteBuf firstMessage;
 	private int iterations = SerialClientTestConstants.ITERATIONS;
 	private long sentTime;
@@ -38,28 +39,21 @@ class EchoClientHandler extends ChannelInboundHandlerAdapter {
 	}
 
 	@Override
-	public void channelRead(ChannelHandlerContext ctx, Object msg) {
+	protected void channelRead0(ChannelHandlerContext ctx, byte[] data) throws Exception {
 		recvTime = System.nanoTime();
-		ByteBuf buf = (ByteBuf)msg;
-		assertEquals(buf.readableBytes(), SerialClientTestConstants.BUFFER_SIZE);
 		for(int x = 0; x < SerialClientTestConstants.BUFFER_SIZE; x++) {
-			assertEquals(x, buf.readUnsignedByte());
+			assertEquals(x, Byte.toUnsignedInt(data[x]));
 		}
 		long delta = (recvTime - sentTime) / 1000 / 1000;
 		times.add(delta);
 		iterations--;
 		if(iterations > 0) {
 			sentTime = System.nanoTime();
-			ctx.writeAndFlush(msg);
+			ctx.writeAndFlush(data);
 		} else {
 			System.out.printf("count: %s max: %smS min: %smS, average: %sms\n", times.size(), Collections.max(times), Collections.min(times), times.stream().mapToLong(s -> s).average().getAsDouble());
 			ctx.channel().close();
 		}
-	}
-
-	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) {
-		ctx.flush();
 	}
 
 	@Override
