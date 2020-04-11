@@ -1,0 +1,6 @@
+org/peripheral/serial/SerialClientTestConstants.class
+org/peripheral/serial/EchoClientHandler.class
+org/peripheral/serial/EchoServerHandler.class
+org/peripheral/serial/JSerialCommSerialClientPerformanceTest$2.class
+org/peripheral/serial/JSerialCommSerialClientPerformanceTest$1.class
+org/peripheral/serial/JSerialCommSerialClientPerformanceTest.class
