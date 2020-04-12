@@ -12,21 +12,18 @@ Java Serial IO libraries all require some amount of native code interop there ap
 (2) Interact with 3rd party libaries that are bundled with the implementation.
 - JSerialComm
 
+(3) Interact with serial port in platform specific ways that, without abstraction, can't be replicated from system to system.
+- Posix file IO on /det/tty devices.
+
+### Test Cases
+I am a fan of the Netty project, it is a swiss army knife for all things asynch io and networking. This effort is starting with Netty abstractions build upon the 3 primary Java serial solutions: PureJavaComm, RxTx, and JSerialComm. Since profiling those have moved along quickly, for good measure I hope to do like profiling of those 3 libaries without Netty in the mix. 
+
+### Test
+The tests includes serial communciations between a server and client application where each is connected to a distinct serial port. Each iteration measure is a 256 byte packet sent from the client that is then verified for correctness and echoed back to the client application who then verfies the content. So each timed interation includes a pair of verifications, a pair of transmissions, and any extra latencies. Since all the tests will use the same baud rate and perform the same verifications on the data, differences in performance will largely be a result of the latencies inherit to each implementation. We do 500 interations of this and capture the min, max, and average times for the round trip. Don't let the absolute times measured worry you much as I am makign every effort to use the libraries in the same manner and not doing any tuning. What is most important here is relative performance.
+
+### Results
+PureJavaComm -> max: 119mS min: 64mS, average: 78.584ms
+JSerialComm. -> max: 74mS  min: 59mS, average: 60.548ms
+RxTx         -> max: 112mS min: 68mS, average: 83.928ms
 
 
-
-PureJavaComm
-count: 500 max: 119mS min: 64mS, average: 78.584ms
-
-JSerialComm
-count: 500 max: 74mS min: 59mS, average: 60.548ms
-
-RxTx
-count: 500 max: 112mS min: 68mS, average: 83.928ms
-
-Forthecoming:
-- PureJavaComm Implementation without Netty
-- RxTx Implementation without Netty
-- JSerialComm Implementation without Netty
-- JTermios Implementation with Netty Embedded Channel
-- JTermios Implemenation with a custom Netty Transport ala PureJavaComm, RxTx, JSerialComm
