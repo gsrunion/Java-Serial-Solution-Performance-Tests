@@ -32,5 +32,8 @@ JSerialComm -> max: 74mS  min: 59mS, average: 60.548ms
 RxTx         -> max: 112mS min: 68mS, average: 83.928ms
 
 ##### Stream Implementations
+PureJavaComm -> couldn't get it to work before my patience ran out
 
 JSerialComm -> max: 61mS min: 58mS, average: 59.452ms
+
+RxTx -> Apparently I don't have the libs.
