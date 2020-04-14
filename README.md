@@ -36,4 +36,4 @@ PureJavaComm -> couldn't get it to work before my patience ran out
 
 JSerialComm -> max: 61mS min: 58mS, average: 59.452ms
 
-RxTx -> Apparently I don't have the libs.
+RxTx -> max: 61mS min: 59mS, average: 59.892ms
