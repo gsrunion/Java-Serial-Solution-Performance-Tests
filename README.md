@@ -24,14 +24,13 @@ The tests includes serial communciations between a server and client application
 ### Results
 
 #### OSX
-####Netty Implementations
+#### Netty Implementations
 PureJavaComm -> max: 119mS min: 64mS, average: 78.584ms (It will run if you hold your mouth just right).
 
 JSerialComm -> max: 74mS  min: 59mS, average: 60.548ms 
-
+ 
 RxTx         -> max: 112mS min: 68mS, average: 83.928ms
 
 ##### Stream Implementations
 
-
-JSerialComm max: 61mS min: 58mS, average: 59.452ms
+JSerialComm -> max: 61mS min: 58mS, average: 59.452ms
