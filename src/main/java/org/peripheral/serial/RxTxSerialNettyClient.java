@@ -8,7 +8,7 @@ import io.netty.channel.rxtx.RxtxChannelOption;
 import io.netty.channel.rxtx.RxtxDeviceAddress;
 import org.runion.peripheral.api.serial.SerialDeviceConfiguration;
 
-public class RxTxSerialClient extends AbstractSerialClientImpl {
+public class RxTxSerialNettyClient extends AbstractNettySerialClientImpl {
 	@Override
 	protected void configureSerialPortParams(Bootstrap bootstrap, SerialDeviceConfiguration configuration) {
 		bootstrap.channel(RxtxChannel.class);

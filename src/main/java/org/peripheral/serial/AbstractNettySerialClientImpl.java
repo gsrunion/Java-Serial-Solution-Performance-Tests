@@ -6,12 +6,12 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.oio.OioByteStreamChannel;
 import io.netty.channel.oio.OioEventLoopGroup;
-import org.runion.peripheral.api.serial.SerialClient;
+import org.runion.peripheral.api.serial.NettySerialClient;
 import org.runion.peripheral.api.serial.SerialDeviceConfiguration;
 
 import java.util.function.Consumer;
 
-abstract class AbstractSerialClientImpl implements SerialClient {
+abstract class AbstractNettySerialClientImpl implements NettySerialClient {
 	protected abstract void configureSerialPortParams(Bootstrap bootstrap, SerialDeviceConfiguration configuration);
 	protected abstract ChannelFuture connect(Bootstrap bootstrap, String portName);
 
@@ -23,25 +23,25 @@ abstract class AbstractSerialClientImpl implements SerialClient {
 	private EventLoopGroup eventLoopGroup;
 
 	@Override
-	public SerialClient setConnectionLostHandler(Consumer<Void> callback) {
+	public NettySerialClient setConnectionLostHandler(Consumer<Void> callback) {
 		this.connectionLostHandler = callback;
 		return this;
 	}
 
 	@Override
-	public SerialClient setConnectionAttemptedHandler(Consumer<Boolean> callback) {
+	public NettySerialClient setConnectionAttemptedHandler(Consumer<Boolean> callback) {
 		this.connectionAttemptedHandler = callback;
 		return this;
 	}
 
 	@Override
-	public SerialClient setConfiguration(SerialDeviceConfiguration configuration) {
+	public NettySerialClient setConfiguration(SerialDeviceConfiguration configuration) {
 		this.configuration = configuration;
 		return this;
 	}
 
 	@Override
-	public SerialClient setChannelInitializer(ChannelInitializer<OioByteStreamChannel> initializer) {
+	public NettySerialClient setChannelInitializer(ChannelInitializer<OioByteStreamChannel> initializer) {
 		this.initializer = initializer;
 		return this;
 	}

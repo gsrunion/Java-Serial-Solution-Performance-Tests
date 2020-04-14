@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class PureJavaCommSerialClientPerformanceTest {
-	private PureJavaCommSerialClient server;
-	private PureJavaCommSerialClient client;
+	private PureJavaCommNettySerialClient server;
+	private PureJavaCommNettySerialClient client;
 	private CompletableFuture<Void> finishedFuture = new CompletableFuture<>();
 
 	@Before
 	public void setup() {
-		server = new PureJavaCommSerialClient();
-		client = new PureJavaCommSerialClient();
+		server = new PureJavaCommNettySerialClient();
+		client = new PureJavaCommNettySerialClient();
 		server.setConfiguration(SerialClientTestConstants.SERVER_CONFIG);
 		client.setConfiguration(SerialClientTestConstants.CLIENT_CONFIG);
 		server.setChannelInitializer(SerialClientTestConstants.SERVER_INITIALIZER);

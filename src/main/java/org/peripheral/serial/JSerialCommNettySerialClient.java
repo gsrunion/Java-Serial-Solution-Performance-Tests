@@ -8,7 +8,7 @@ import io.netty.channel.jsc.JSerialCommChannelOption;
 import io.netty.channel.jsc.JSerialCommDeviceAddress;
 import org.runion.peripheral.api.serial.SerialDeviceConfiguration;
 
-public class JSerialCommSerialClient extends AbstractSerialClientImpl {
+public class JSerialCommNettySerialClient extends AbstractNettySerialClientImpl {
 	@Override
 	protected void configureSerialPortParams(Bootstrap bootstrap, SerialDeviceConfiguration configuration) {
 		bootstrap.channel(JSerialCommChannel.class);

@@ -10,14 +10,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 public class RxTxSerialClientPerformanceTest {
-	private RxTxSerialClient server;
-	private RxTxSerialClient client;
+	private RxTxSerialNettyClient server;
+	private RxTxSerialNettyClient client;
 	private CompletableFuture<Void> finishedFuture = new CompletableFuture<>();
 
 	@Before
 	public void setup() {
-		server = new RxTxSerialClient();
-		client = new RxTxSerialClient();
+		server = new RxTxSerialNettyClient();
+		client = new RxTxSerialNettyClient();
 		server.setConfiguration(SerialClientTestConstants.SERVER_CONFIG);
 		client.setConfiguration(SerialClientTestConstants.CLIENT_CONFIG);
 		server.setChannelInitializer(SerialClientTestConstants.SERVER_INITIALIZER);

@@ -41,7 +41,7 @@ class SerialClientTestConstants {
 		@Override
 		protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
 			oioByteStreamChannel.pipeline().addLast(new FixedLengthFrameDecoder(SerialClientTestConstants.BUFFER_SIZE));
-			oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
+			//oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
 			oioByteStreamChannel.pipeline().addLast(new ByteArrayDecoder());
 			oioByteStreamChannel.pipeline().addLast(new ByteArrayEncoder());
 			oioByteStreamChannel.pipeline().addLast(new EchoServerHandler());
@@ -52,7 +52,7 @@ class SerialClientTestConstants {
 		@Override
 		protected void initChannel(OioByteStreamChannel oioByteStreamChannel) throws Exception {
 			oioByteStreamChannel.pipeline().addLast(new FixedLengthFrameDecoder(SerialClientTestConstants.BUFFER_SIZE));
-			oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
+			//oioByteStreamChannel.pipeline().addLast(new LoggingHandler(LogLevel.ERROR));
 			oioByteStreamChannel.pipeline().addLast(new ByteArrayDecoder());
 			oioByteStreamChannel.pipeline().addLast(new ByteArrayEncoder());
 			oioByteStreamChannel.pipeline().addLast(new EchoClientHandler());

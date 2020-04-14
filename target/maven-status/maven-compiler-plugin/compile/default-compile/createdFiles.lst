@@ -1,9 +1,3 @@
-org/peripheral/api/serial/SerialDeviceDataBits.class
-org/peripheral/serial/JSerialCommSerialClient$1.class
-org/peripheral/api/serial/SerialDeviceStopBits.class
-org/example/App.class
-org/peripheral/api/serial/SerialDeviceParity.class
 org/peripheral/serial/AbstractSerialClientImpl.class
-org/peripheral/api/serial/SerialDeviceConfiguration.class
-org/peripheral/api/serial/SerialClient.class
+org/peripheral/serial/JSerialCommSerialClient$1.class
 org/peripheral/serial/JSerialCommSerialClient.class

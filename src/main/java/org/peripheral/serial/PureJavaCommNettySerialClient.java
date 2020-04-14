@@ -8,7 +8,7 @@ import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import org.runion.peripheral.api.serial.SerialDeviceConfiguration;
 
-public class PureJavaCommSerialClient extends AbstractSerialClientImpl {
+public class PureJavaCommNettySerialClient extends AbstractNettySerialClientImpl {
 	@Override
 	protected void configureSerialPortParams(Bootstrap bootstrap, SerialDeviceConfiguration configuration) {
 		bootstrap.channel(PureJavaCommChannel.class);
