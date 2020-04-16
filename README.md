@@ -37,3 +37,21 @@ PureJavaComm -> couldn't get it to work before my patience ran out
 JSerialComm -> max: 61mS min: 58mS, average: 59.452ms
 
 RxTx -> max: 61mS min: 59mS, average: 59.892ms
+
+#### Windows (VM)
+
+##### Netty Implementation
+
+PureJavaComm -> Failed
+
+JSerialComm -> max: 79mS min: 58mS, average: 60.99ms
+
+RxTx -> Failed...link error
+
+##### Streaming Implementation 
+
+PureJavaComm -> Failed
+
+JSerialComm -> max: 70mS min: 59mS, average: 62.742ms
+
+RxTx -> Failed...link error
