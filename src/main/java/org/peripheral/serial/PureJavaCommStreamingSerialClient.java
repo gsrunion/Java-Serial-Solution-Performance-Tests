@@ -72,8 +72,8 @@ public class PureJavaCommStreamingSerialClient implements StreamingSerialClient 
 		port.setRTS(false);
 		port.setFlowControlMode(SerialPort.FLOWCONTROL_NONE);
 		port.enableReceiveTimeout(5000);
-		port.setInputBufferSize(256);
-		port.setOutputBufferSize(256);
+		port.setInputBufferSize(512);
+		port.setOutputBufferSize(512);
 		return true;
 	}
 

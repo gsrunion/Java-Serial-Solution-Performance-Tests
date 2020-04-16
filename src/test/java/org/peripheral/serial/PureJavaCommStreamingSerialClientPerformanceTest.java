@@ -27,6 +27,8 @@ public class PureJavaCommStreamingSerialClientPerformanceTest {
 
 	@Before
 	public void setup() {
+		System.setProperty("purejavacomm.loglevel", "6");
+		System.setProperty("purejavacomm.usepoll", "true");
 		server = new PureJavaCommStreamingSerialClient();
 		client = new PureJavaCommStreamingSerialClient();
 
