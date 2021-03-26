@@ -1,7 +1,7 @@
 # Java-Serial-Solution-Performance-Tests
 
 ## Background
-Serial IO in Java is challenging. One would expect nothing less from a language and ecosystem striving towards a goal of 'write one run every'. Despite all that a handfull of serial IO solutions do exist and this project aims to shed light on some of those and collect metrics as to how they perform.
+Serial IO in Java is challenging. One would expect nothing less from a language and ecosystem striving towards a goal of 'write once run every'. Despite all that a handfull of serial IO solutions do exist and this project aims to shed light on some of those and collect metrics as to how they perform.
 
 ## Implementations
 Java Serial IO libraries all require some amount of native code interop there appear to be 2 different strategies to this
